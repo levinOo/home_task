@@ -14,7 +14,38 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: MyHomePage());
+    return MaterialApp(
+      home: MyHomePage(),
+
+      theme: ThemeData(
+        iconTheme: IconThemeData(color: Color(0xFF9CACBC), size: 30),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.white,
+          titleTextStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 21,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+
+        scaffoldBackgroundColor: Colors.white,
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(
+            fontSize: 19,
+            color: Colors.black,
+            fontWeight: FontWeight.w400,
+          ),
+
+          bodySmall: TextStyle(fontSize: 14, color: Color(0xFF59616C)),
+
+          bodyMedium: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            height: 1.4,
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -28,22 +59,21 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
+    String name = "Ирина";
+    String doctor = "Стоматолог";
 
+    final theme = Theme.of(context);
+    return Scaffold(
+      appBar: AppBar(
         titleSpacing: 0,
         title: Row(
           children: [
-            IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back)),
-            SizedBox(
-              width: 20,
-            ),
-            Text("Новый документ", style: TextStyle(color: Colors.black, fontSize: 21, fontWeight: FontWeight.w600),)
+            IconButton(onPressed: () {}, icon: Icon(Icons.arrow_back)),
+            SizedBox(width: 20),
+            Text("Новый документ"),
           ],
         ),
-        
+
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0),
           child: Container(color: Colors.grey, height: 1.0),
@@ -70,155 +100,74 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
 
-            SizedBox(height: 20),
-
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.person_outlined,
-                        color: Color(0xFF9CACBC),
-                        size: 30,
-                      ),
-                      SizedBox(width: 30),
-                      Text(
-                        'Ирина',
-                        style: TextStyle(
-                          fontSize: 19,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: BodyPart(
+                      icon: Icons.person_outlined,
+                      text1: name,
+                      text2: "",
+                    ),
                   ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.calendar_today_outlined,
-                        size: 30,
-                        color: Color(0xFF9CACBC),
-                      ),
-                      SizedBox(width: 30),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "22 мая (вт), 16:00",
-                            style: TextStyle(
-                              fontSize: 19,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Text(
-                            "Дата получения документов",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Color(0xFF59616C),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: BodyPart(
+                      icon: Icons.calendar_today_outlined,
+                      text1: "22 мая (вт), 16:00",
+                      text2: "Дата получения документов",
+                    ),
                   ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.location_on_outlined,
-                        color: Color(0xFF9CACBC),
-                        size: 30,
-                      ),
-                      SizedBox(width: 30),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Клиника «Фомина»",
-                            style: TextStyle(
-                              fontSize: 19,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Text(
-                            "Бульвар Перервинский, д. 4",
-                            style: TextStyle(
-                              fontSize: 14,
-                              color: Color(0xFF59616C),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: BodyPart(
+                      icon: Icons.location_on_outlined,
+                      text1: "Клиника «Фомина»",
+                      text2: "Бульвар Перервинский, д. 4",
+                    ),
                   ),
-                  SizedBox(height: 20),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.medical_information_outlined,
-                        color: Color(0xFF9CACBC),
-                        size: 30,
-                      ),
-                      SizedBox(width: 30),
-                      Text(
-                        'Стоматолог',
-                        style: TextStyle(
-                          fontSize: 19,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
+
+                  BodyPart(
+                    icon: Icons.medical_information_outlined,
+                    text1: doctor,
+                    text2: "",
                   ),
                 ],
               ),
             ),
 
-            SizedBox(height: 30),
-
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFFF2D9),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            top: 85,
-                            right: -25,
-                            child: Icon(
-                              Icons.info_outline,
-                              color: Color(0xFFF9D2AE),
-                              size: 80,
-                            ),
-                          ),
-                          // Сам текст
-                          Padding(
-                            padding: const EdgeInsets.all(19.0),
-                            child: Text(
-                              "Клиника прислала документ после приёма. Чтобы добавить его в медкарту и посмотреть содержание, нужно будет указать дату рождения пациента. Это проверка для безопасности данных.",
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.w600,
-                                height: 1.4,
-                              ),
-                            ),
-                          ),
-                        ],
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 30),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFFFFF2D9),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: 85,
+                      right: -25,
+                      child: Icon(
+                        Icons.info_outline,
+                        color: Color(0xFFF9D2AE),
+                        size: 80,
                       ),
                     ),
-                  ),
-                ],
+
+                    Padding(
+                      padding: const EdgeInsets.all(19.0),
+                      child: Text(
+                        "Клиника прислала документ после приёма. Чтобы добавить его в медкарту и посмотреть содержание, нужно будет указать дату рождения пациента. Это проверка для безопасности данных.",
+                        style: theme.textTheme.bodyMedium,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
 
@@ -229,49 +178,101 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ElevatedButton(
+                  ButtonAction(
+                    text: "Добавить в медкарту",
+                    colorButton: Color(0xFF1A5DD0),
+                    colorText: Colors.white,
                     onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      backgroundColor: Color(0xFF1A5DD0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                    ),
-                    child: Text(
-                      "Добавить в медкарту",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
-                      ),
-                    ),
                   ),
                   SizedBox(height: 10),
-                  ElevatedButton(
+                  ButtonAction(
+                    text: "Удалить",
+                    colorButton: Color(0xFFECF1FB),
+                    colorText: Color(0xFF1A5DD0),
                     onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                      backgroundColor: Color(0xFFECF1FB),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      padding: EdgeInsets.symmetric(vertical: 16),
-                    ),
-                    child: Text(
-                      "Удалить",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF1A5DD0),
-                      ),
-                    ),
                   ),
                 ],
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class BodyPart extends StatelessWidget {
+  final String text1;
+  final String text2;
+  final IconData icon;
+
+  const BodyPart({
+    super.key,
+    required this.icon,
+    required this.text1,
+    required this.text2,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    if (text2 == "") {
+      return Row(
+        children: [
+          Icon(icon),
+          SizedBox(width: 30),
+          Text(text1, style: theme.textTheme.bodyLarge),
+        ],
+      );
+    } else {
+      return Row(
+        children: [
+          Icon(icon),
+          SizedBox(width: 30),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(text1, style: theme.textTheme.bodyLarge),
+              Text(text2, style: theme.textTheme.bodySmall),
+            ],
+          ),
+        ],
+      );
+    }
+  }
+}
+
+class ButtonAction extends StatelessWidget {
+  final String text;
+
+  final Color colorButton;
+  final Color colorText;
+  final VoidCallback onPressed;
+
+  const ButtonAction({
+    super.key,
+    required this.text,
+    required this.colorButton,
+    required this.onPressed,
+    required this.colorText,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        elevation: 0,
+        backgroundColor: colorButton,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        padding: EdgeInsets.symmetric(vertical: 16),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 17,
+          fontWeight: FontWeight.w700,
+          color: colorText,
         ),
       ),
     );
